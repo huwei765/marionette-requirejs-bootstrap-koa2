@@ -10,7 +10,7 @@ define(["app", "apps/config/storage/localstorage"], function(ContactManager){
       },
 
       validate: function(attrs, options) {
-        var errors = {}
+        var errors = {};
         if (! attrs.firstName) {
           errors.firstName = "can't be blank";
         }
@@ -31,12 +31,12 @@ define(["app", "apps/config/storage/localstorage"], function(ContactManager){
     Entities.configureStorage("ContactManager.Entities.Contact", Entities.Contact);
 
     Entities.ContactCollection = Backbone.Collection.extend({
-      url: "contacts",
+      url: "/api/contacts_list.json",
       model: Entities.Contact,
       comparator: "firstName"
     });
 
-    Entities.configureStorage("ContactManager.Entities.ContactCollection", Entities.ContactCollection);
+    //Entities.configureStorage("ContactManager.Entities.ContactCollection", Entities.ContactCollection);
 
     var initializeContacts = function(){
       var contacts = new Entities.ContactCollection([
@@ -61,10 +61,7 @@ define(["app", "apps/config/storage/localstorage"], function(ContactManager){
         });
         var promise = defer.promise();
         $.when(promise).done(function(fetchedContacts){
-          if(fetchedContacts.length === 0){
-            // if we don't have any contacts yet, create some for convenience
-            var models = initializeContacts();
-            contacts.reset(models);
+          if(fetchedContacts.length > 0){
           }
         });
         return promise;

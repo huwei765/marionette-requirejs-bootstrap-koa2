@@ -1,0 +1,47 @@
+{
+  "name": "koa-grace",
+  "version": "1.0.4",
+  "description": "A new generation Nodejs multi-app MVC framework, which build with KOA / Mongoose etc.",
+  "Keywords": [
+    "nodejs",
+    "koa",
+    "grace",
+    "koa-grace",
+    "mvc",
+    "framework"
+  ],
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node bin/server.js -online",
+    "start.dev": "node bin/server.js",
+    "test": "mocha",
+    "dev": "./node_modules/.bin/nodemon bin/server.js",
+    "dev.ol": "./node_modules/.bin/nodemon bin/server.js -online"
+  },
+  "author": "wilee",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "ejs": "^2.4.1",
+    "koa": "^1.2.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-grace-mock": "^1.0.4",
+    "koa-grace-mongo": "^1.0.8",
+    "koa-grace-proxy": "^1.0.14",
+    "koa-grace-router": "^1.0.27",
+    "koa-grace-static": "^1.0.5",
+    "koa-grace-vhost": "^1.0.6",
+    "koa-grace-views": "^1.0.3",
+    "koa-grace-xload": "^1.0.12",
+    "koa-gzip": "^0.1.0",
+    "koa-logger": "^1.3.0",
+    "koa-mongo": "^0.5.0",
+    "koa-onerror": "^1.3.1",
+    "koa-response-time": "^1.0.2",
+    "nodemon": "^1.8.1",
+    "nunjucks": "^2.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
