@@ -13,7 +13,7 @@ const logger = require('koa-logger');
 const gzip = require('koa-gzip');
 const views = require('koa-grace-views');
 const bodyparser = require('koa-bodyparser');
-const _static = require('koa-grace-static');
+const _static = require('koa-grace-static2');
 
 // const conditional = require('koa-conditional-get');
 // const etag = require('koa-etag');
@@ -53,9 +53,9 @@ app.use(bodyparser({
 app.use(gzip());
 
 // 配置静态文件路由
-app.use(_static(['/static/**/*', '/*/static/**/*'], {
-  dir: config_path_project,
-  maxage: config_site.env == 'production' && 60 * 60 * 1000
+app.use(_static(['/assets/**/*', '/*.html'], {
+    dir: "./",
+    maxage: config_site.env == 'production' && 60 * 60 * 1000
 }));
 
 
@@ -77,13 +77,13 @@ vhosts = vhosts.map(function(item) {
   config_site.env == 'development' && vapp.use(mock(vapp, {
     root: appPath + '/mock/',
     prefix: config_mock.prefix + appName
-  }))
+  }));
 
   // 如果配置了连接数据库
   config_mongo.api[appName] && vapp.use(mongo(vapp, {
     root: appPath + '/model/mongo',
     connect: config_mongo.api[appName]
-  }))
+  }));
 
   // 配置api
   vapp.use(proxy(vapp, config_api, {
