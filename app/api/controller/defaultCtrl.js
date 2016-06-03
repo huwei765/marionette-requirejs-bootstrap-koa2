@@ -11,3 +11,4 @@ module.exports = function* () {
 
 	// this.res.end();
 }
+exports.__controller__ = false;

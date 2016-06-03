@@ -1,7 +1,7 @@
 define(["app", "apps/config/storage/localstorage"], function(ContactManager){
   ContactManager.module("Entities", function(Entities, ContactManager, Backbone, Marionette, $, _){
     Entities.Contact = Backbone.Model.extend({
-      urlRoot: "contacts",
+      urlRoot: "/contacts/contact",
 
       defaults: {
         firstName: "",
@@ -28,10 +28,10 @@ define(["app", "apps/config/storage/localstorage"], function(ContactManager){
       }
     });
 
-    Entities.configureStorage("ContactManager.Entities.Contact", Entities.Contact);
+    //Entities.configureStorage("ContactManager.Entities.Contact", Entities.Contact);
 
     Entities.ContactCollection = Backbone.Collection.extend({
-      url: "/api/contacts_list.json",
+      url: "/contacts/contacts_list",
       model: Entities.Contact,
       comparator: "firstName"
     });
@@ -62,6 +62,7 @@ define(["app", "apps/config/storage/localstorage"], function(ContactManager){
         var promise = defer.promise();
         $.when(promise).done(function(fetchedContacts){
           if(fetchedContacts.length > 0){
+              contacts.reset(fetchedContacts.models);
           }
         });
         return promise;

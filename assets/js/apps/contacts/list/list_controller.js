@@ -59,7 +59,7 @@ define(["app", "apps/contacts/list/list_view"], function(ContactManager, View){
                   view.on("form:submit", function(data){
                     if(contacts.length > 0){
                       var highestId = contacts.max(function(c){ return c.id; }).get("id");
-                      data.id = highestId + 1;
+                      data.id = parseInt(highestId) + 1;
                     }
                     else{
                       data.id = 1;
